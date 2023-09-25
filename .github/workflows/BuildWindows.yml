@@ -208,7 +208,7 @@ jobs:
       - name: Install package Inno Setup
         continue-on-error: true
         if: ${{ matrix.installer == 'inno' }}
-        run:
+        run: |
           dir
           .\srcml-1.0.0-windows-x86_64.exe /VERYSILENT
       # - uses: actions/upload-artifact@v3
@@ -221,7 +221,10 @@ jobs:
         continue-on-error: true
         if: ${{ matrix.installer == 'nuget' }}
         run: |
-          nuget install srcml -Source .
+          mkdir LocalNuGetFeed
+          nuget add srcML-1.0.0-windows-x86_64.nupkg -Source LocalNuGetFeed
+          nuget install srcml -Source LocalNuGetFeed
+          nuget install srcML -Source LocalNuGetFeed
       # - uses: actions/upload-artifact@v3
       #   if: ${{ matrix.installer == 'msi' }}
       #   with:
