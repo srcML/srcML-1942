@@ -176,7 +176,7 @@ jobs:
       #     ./srcml_xslt.exe || echo $?
 
 
-  test-msi:
+  test-installer:
     needs: build
     runs-on: windows-latest
     strategy:
@@ -208,7 +208,7 @@ jobs:
       - name: Install package Inno Setup
         continue-on-error: true
         if: ${{ matrix.installer == 'inno' }}
-        run: ./*.exe /VERYSILENT
+        run: .\srcml-1.0.0-windows-x86_64.exe /VERYSILENT
       # - uses: actions/upload-artifact@v3
       #   if: ${{ matrix.installer == 'msi' }}
       #   with:
@@ -218,7 +218,7 @@ jobs:
       - name: Install package Nuget
         continue-on-error: true
         if: ${{ matrix.installer == 'nuget' }}
-        run: nuget install .\*.nuget
+        run: nuget install srcml-1.0.0-windows-x86_64.nupkg
       # - uses: actions/upload-artifact@v3
       #   if: ${{ matrix.installer == 'msi' }}
       #   with:
