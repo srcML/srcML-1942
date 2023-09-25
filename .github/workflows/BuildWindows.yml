@@ -222,7 +222,7 @@ jobs:
         if: ${{ matrix.installer == 'nuget' }}
         run: |
           mkdir LocalNuGetFeed
-          nuget add srcML-1.0.0-windows-x86_64.nupkg -Source LocalNuGetFeed
+          nuget add srcml.1.0.0.nupkg -Source LocalNuGetFeed
           nuget install srcml -Source LocalNuGetFeed
           nuget install srcML -Source LocalNuGetFeed
       # - uses: actions/upload-artifact@v3
@@ -236,6 +236,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "/c/Program Files/srcML/bin" >> $GITHUB_PATH
+          echo "/c/Program Files (x86)/srcML/bin" >> $GITHUB_PATH
 
       - name: Run Installed srcml
         shell: bash
