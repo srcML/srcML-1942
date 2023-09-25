@@ -208,7 +208,9 @@ jobs:
       - name: Install package Inno Setup
         continue-on-error: true
         if: ${{ matrix.installer == 'inno' }}
-        run: .\srcml-1.0.0-windows-x86_64.exe /VERYSILENT
+        run:
+          ls -lh
+          .\srcml-1.0.0-windows-x86_64.exe /VERYSILENT
       # - uses: actions/upload-artifact@v3
       #   if: ${{ matrix.installer == 'msi' }}
       #   with:
