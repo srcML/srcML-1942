@@ -223,8 +223,8 @@ jobs:
         run: |
           mkdir LocalNuGetFeed
           nuget add srcml.1.0.0.nupkg -Source LocalNuGetFeed
-          nuget install srcml -Source LocalNuGetFeed
-          nuget install srcML -Source LocalNuGetFeed
+          nuget install srcml -Source D:\a\srcML-1942\srcML-1942\LocalNuGetFeed
+          nuget install srcML -Source D:\a\srcML-1942\srcML-1942\LocalNuGetFeed
       # - uses: actions/upload-artifact@v3
       #   if: ${{ matrix.installer == 'msi' }}
       #   with:
