@@ -49,19 +49,19 @@ jobs:
           mkdir build
           echo $VCPKG_ROOT/vcpkg list
 
-      - name: Run CMake with vcpkg.json manifest
-        uses: lukka/run-cmake@v10
-        with:
-          configurePreset: msvc
-          configurePresetAdditionalArgs: "['-DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache']"
-          vcpkgJsonGlob: '${{ github.workspace }}/vcpkg.json'
+      # - name: Run CMake with vcpkg.json manifest
+      #   uses: lukka/run-cmake@v10
+      #   with:
+      #     configurePreset: msvc
+      #     configurePresetAdditionalArgs: "['-DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache']"
+      #     vcpkgJsonGlob: '${{ github.workspace }}/vcpkg.json'
 
-      # - name: CMake Setup on Windows
-      #   shell: bash
-      #   working-directory: build
-      #   run: |
-      #     export UseMultiToolTask=true
-      #     cmake .. --preset msvc -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache
+      - name: CMake Setup on Windows
+        shell: bash
+        working-directory: build
+        run: |
+          export UseMultiToolTask=true
+          cmake .. --preset msvc -DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache
 
       - name: Build
         shell: bash
