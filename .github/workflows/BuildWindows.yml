@@ -54,6 +54,7 @@ jobs:
         with:
           configurePreset: msvc
           configurePresetAdditionalArgs: "['-DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache']"
+          vcpkgJsonGlob: ''${{ github.workspace }}/vcpkg.json'
 
       # - name: CMake Setup on Windows
       #   shell: bash
