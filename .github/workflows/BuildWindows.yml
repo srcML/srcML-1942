@@ -27,7 +27,7 @@ jobs:
         shell: bash
         run: |
           mkdir "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/vcpkg/scripts/msys"
-          curl -L -O https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/cmake/compile_wrapper_consider_clang-cl.patch -o "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/vcpkg/scripts/msys/compile_wrapper_consider_clang-cl.patch"
+          curl -L https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/cmake/compile_wrapper_consider_clang-cl.patch -o "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/vcpkg/scripts/msys/compile_wrapper_consider_clang-cl.patch"
 
       - name: Setup devcmd to use cl.exe
         uses: ilammy/msvc-dev-cmd@v1.12.1
@@ -162,7 +162,7 @@ jobs:
       #     ./srcml_xslt.exe || echo $?
 
 
-  test:
+  test-msi:
     needs: build
     runs-on: windows-latest
     steps:
@@ -239,6 +239,9 @@ jobs:
       #     ./srcml_transform.exe || echo $?
       #     ./srcml_xpath.exe || echo $?
       #     ./srcml_xslt.exe || echo $?
+
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
       - name: Setup msys2 with additional client-test packages for Windows
         uses: msys2/setup-msys2@v2
