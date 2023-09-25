@@ -51,7 +51,6 @@ jobs:
 
       - name: Run CMake with vcpkg.json manifest
         uses: lukka/run-cmake@v10
-        working-directory: build
         with:
           configurePreset: msvc
           configurePresetAdditionalArgs: "['-DCMAKE_C_COMPILER_LAUNCHER=sccache -DCMAKE_CXX_COMPILER_LAUNCHER=sccache']"
