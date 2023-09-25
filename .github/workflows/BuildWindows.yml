@@ -181,7 +181,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        installer: [msi]
+        installer: [msi, inno, nuget]
 
     steps:
       # Download the installer artifact
@@ -195,14 +195,35 @@ jobs:
       #   run: |
       #     ls -lh
 
-      - name: Install package
+      - name: Install package Wix msi
         continue-on-error: true
         if: ${{ matrix.installer == 'msi' }}
         run: msiexec /i srcml-1.0.0-windows-x86_64.msi /quiet /norestart /L*vx .\msi.log
       - uses: actions/upload-artifact@v3
+        if: ${{ matrix.installer == 'msi' }}
         with:
           name: msi.log
           path: ./msi.log
+
+      - name: Install package Inno Setup
+        continue-on-error: true
+        if: ${{ matrix.installer == 'inno' }}
+        run: ./*.exe /VERYSILENT
+      # - uses: actions/upload-artifact@v3
+      #   if: ${{ matrix.installer == 'msi' }}
+      #   with:
+      #     name: msi.log
+      #     path: ./msi.log
+
+      - name: Install package Nuget
+        continue-on-error: true
+        if: ${{ matrix.installer == 'nuget' }}
+        run: nuget install .\*.nuget
+      # - uses: actions/upload-artifact@v3
+      #   if: ${{ matrix.installer == 'msi' }}
+      #   with:
+      #     name: msi.log
+      #     path: ./msi.log
 
       - name: Set PATH for Windows
         shell: bash
