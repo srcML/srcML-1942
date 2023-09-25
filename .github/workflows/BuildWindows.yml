@@ -218,7 +218,7 @@ jobs:
       - name: Install package Nuget
         continue-on-error: true
         if: ${{ matrix.installer == 'nuget' }}
-        run: nuget install srcml-1.0.0-windows-x86_64 -Source .
+        run: nuget install srcML -Source .
       # - uses: actions/upload-artifact@v3
       #   if: ${{ matrix.installer == 'msi' }}
       #   with:
