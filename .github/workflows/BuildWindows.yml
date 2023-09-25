@@ -280,7 +280,7 @@ jobs:
         continue-on-error: true
         run: |
           export UseMultiToolTask=true
-          cmake .. --preset msvc
+          cmake ../test/client
 
       - name: Windows Client Tests on Installed srcml
         shell: msys2 {0}
