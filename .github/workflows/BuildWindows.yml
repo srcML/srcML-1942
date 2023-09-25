@@ -209,7 +209,7 @@ jobs:
         continue-on-error: true
         if: ${{ matrix.installer == 'inno' }}
         run:
-          ls -lh
+          dir
           .\srcml-1.0.0-windows-x86_64.exe /VERYSILENT
       # - uses: actions/upload-artifact@v3
       #   if: ${{ matrix.installer == 'msi' }}
@@ -220,7 +220,8 @@ jobs:
       - name: Install package Nuget
         continue-on-error: true
         if: ${{ matrix.installer == 'nuget' }}
-        run: nuget install srcML -Source .
+        run: |
+          nuget install srcml -Source .
       # - uses: actions/upload-artifact@v3
       #   if: ${{ matrix.installer == 'msi' }}
       #   with:
