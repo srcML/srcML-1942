@@ -211,7 +211,7 @@ jobs:
         if: ${{ matrix.installer == 'inno' }}
         run: |
           dir
-          srcml-1.0.0-windows-x86_64.exe /VERYSILENT
+          D:\a\srcML-1942\srcML-1942\srcml-1.0.0-windows-x86_64.exe /VERYSILENT
       # - uses: actions/upload-artifact@v3
       #   if: ${{ matrix.installer == 'msi' }}
       #   with:
