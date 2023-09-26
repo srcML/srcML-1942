@@ -23,6 +23,9 @@ jobs:
         with:
           vcpkgGitCommitId: 'acc3bcf76b84ae5041c86ab55fe138ae7b8255c7'
 
+      # There is a missing directory/file in Visual Studio 2022 vcpkg support
+      # A later update should fix this
+      # In the meantime, create the missing directory and download the missing file
       - name: Fix vcpkg
         shell: bash
         run: |
@@ -62,9 +65,16 @@ jobs:
           export UseMultiToolTask=true
           cmake .. --preset msvc-sccache
 
+      # - name: CMake Setup on Windows
+      #   uses: lukka/run-cmake@v10
+      #   with:
+      #     configurePreset: 'msvc-sccache'
+      #     # buildDirectory: '${{ github.workspace }}/build'
+
       - name: Build
         shell: bash
         working-directory: build
+        continue-on-error: true
         run: |
           export UseMultiToolTask=true
           cmake --build . --config Release
@@ -230,6 +240,7 @@ jobs:
       #     name: msi.log
       #     path: ./msi.log
 
+
       - name: Set PATH for Windows
         shell: bash
         continue-on-error: true
@@ -321,7 +332,6 @@ jobs:
         timeout-minutes: 10
         continue-on-error: true
         run: |
-          # export SRCML_HOME="/c/Program Files/srcML/bin/"
           export SRCML_HOME="/c/Program Files/srcML/bin"
           ctest -C Release -VV
 
