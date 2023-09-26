@@ -223,9 +223,6 @@ jobs:
           mkdir LocalNuGetFeed
           nuget add srcml.1.0.0.nupkg -Source LocalNuGetFeed
           nuget install srcml -Source D:\a\srcML-1942\srcML-1942\LocalNuGetFeed -OutputDirectory "C:\Program Files"
-          dir "C:\Program Files"
-          dir "C:\Program Files\srcML"
-          dir "C:\Program Files\srcML\bin"
       # - uses: actions/upload-artifact@v3
       #   if: ${{ matrix.installer == 'msi' }}
       #   with:
@@ -237,6 +234,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "/c/Program Files/srcML/bin" >> $GITHUB_PATH
+          echo "/c/Program Files/srcml.1.0.0/bin" >> $GITHUB_PATH
           echo "/c/Program Files (x86)/srcML/bin" >> $GITHUB_PATH
 
       - name: Run Installed srcml
